@@ -18,11 +18,11 @@ namespace consumer_lib
     public class WeatherForecastClient
     {
         #nullable enable
-        public async Task<List<WeatherForecast>> GetForecasts(HttpClient? httpClient = null)
+        public async Task<List<WeatherForecast>> GetForecasts(string baseUrl, HttpClient? httpClient = null)
         {
             using var client = httpClient == null ? new HttpClient() : httpClient;
 
-            var response = await client.GetAsync("http://localhost:5000/WeatherForecast");
+            var response = await client.GetAsync(baseUrl + "/WeatherForecast");
             response.EnsureSuccessStatusCode();
 
             var resp = await response.Content.ReadAsStringAsync();

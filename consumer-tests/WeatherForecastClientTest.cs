@@ -36,7 +36,7 @@ namespace consumer_tests
             var httpClient = new HttpClient(handlerMock.Object);
 
             var forecastClient = new WeatherForecastClient();
-            List<WeatherForecast> result = await forecastClient.GetForecasts(httpClient);
+            List<WeatherForecast> result = await forecastClient.GetForecasts("http://localhost:5000", httpClient);
 
             result.Should().NotBeNull();
             result.Should().HaveCount(1);
